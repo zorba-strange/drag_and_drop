@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+const React                       = require('react');
+const ReactDOM                    = require('react-dom');
+const TopLevelWrapperComponent    = require('./TopLevelWrapperComponent');
 
 ReactDOM.render(
-  <App />,
+  <TopLevelWrapperComponent />,
   document.getElementById('root')
 );
