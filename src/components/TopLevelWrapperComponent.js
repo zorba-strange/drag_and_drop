@@ -4,7 +4,6 @@ const HTML5Backend          = require('react-dnd-html5-backend');
 const { DragDropContext }   = require('react-dnd');
 
 const Column                = require('./Column');
-const MakeCellButton        = require('./buttons/MakeCellButton');
 const MakeColumnButton      = require('./buttons/MakeColumnButton');
 
 const column_wrapper_styles = {
@@ -42,7 +41,6 @@ const TopLevelWrapperComponent = () => {
             </div>
             <div
             style={button_wrapper_styles}>
-                <MakeCellButton />
                 <MakeColumnButton />
             </div>
         </div>

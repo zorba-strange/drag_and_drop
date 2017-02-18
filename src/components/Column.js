@@ -2,6 +2,7 @@ const React                 = require('react');
 const Radium                = require('radium');
 const { DragSource }        = require('react-dnd');
 
+const MakeCellButton        = require('./buttons/MakeCellButton');
 const Cell                  = require('./Cell');
 
 
@@ -49,6 +50,7 @@ const Column = ({
     return connectDragSource(
         <div
             style={page_wrapper_styles}>
+            <MakeCellButton />
             <Cell />
             <Cell />
             <Cell />
