@@ -3,8 +3,6 @@ const {
     MAKE_COLUMN,
 }                             = require('../ACTION_TYPES');
 
-console.log(MAKE_CELL);
-
 const makeCell = (column_index, cell) => {
     return {
         type: MAKE_CELL,

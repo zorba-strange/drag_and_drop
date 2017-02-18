@@ -1,6 +1,9 @@
 const React                 = require('react');
 const Radium                = require('radium');
-
+const { connect }             = require('react-redux');
+const { bindActionCreators }  = require('redux');
+const Immutable               = require('immutable');
+const { makeCell }            = require('../../state/actions/make_actions');
 
 const page_wrapper_styles = {
 
@@ -22,11 +25,17 @@ const page_wrapper_styles = {
 };
 
 
-const MakeCellButton = ({}) => {
+const MakeCellButton = ({
+    makeCell,
+    column_index,
+}) => {
     return (
         <div
-            onClick={() => {
+            onClick={(e) => {
+                e.preventDefault();
                 console.log('make new cell');
+                const cell = 'cell';
+                makeCell(column_index, cell);
             }}
             style={page_wrapper_styles}>
             jlo
@@ -34,5 +43,14 @@ const MakeCellButton = ({}) => {
     )
 };
 
+const mapStateToProps = (state) => {
+    return {};
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        makeCell: bindActionCreators(makeCell, dispatch),
+    }
+};
 
-module.exports = Radium(MakeCellButton);
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Radium(MakeCellButton));

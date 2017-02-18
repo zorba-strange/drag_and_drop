@@ -43,7 +43,8 @@ const TopLevelWrapperComponent = ({
                 style={column_wrapper_styles}>
                 {columns.map((column, column_index) => {
                     return (
-                        <Column />
+                        <Column 
+                            column_index={column_index}/>
                     );
                 })}
 

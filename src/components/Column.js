@@ -1,6 +1,9 @@
 const React                 = require('react');
 const Radium                = require('radium');
+const Immutable             = require('immutable');
 const { DragSource }        = require('react-dnd');
+const { compose }           = require('redux');
+const { connect }           = require('react-redux');
 
 const MakeCellButton        = require('./buttons/MakeCellButton');
 const Cell                  = require('./Cell');
@@ -46,17 +49,31 @@ const collect = (connect, monitor) => {
 
 const Column = ({
     connectDragSource,
+    column_index,
+    cells,
 }) => {
+    console.log(cells);
     return connectDragSource(
         <div
             style={page_wrapper_styles}>
-            <MakeCellButton />
-            <Cell />
-            <Cell />
-            <Cell />
+            <MakeCellButton 
+                column_index={column_index}/>
+            {cells.map(cell => {
+                return (
+                    <Cell />
+                );
+            })}
         </div>
     );
 };
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        cells: state.getIn(['columns', ownProps.column_index], Immutable.List([])),
+    };
+};
 
-module.exports = DragSource(Column_Type, columnDragSource, collect)(Radium(Column));
+module.exports = compose(
+    DragSource(Column_Type, columnDragSource, collect),
+    connect(mapStateToProps),
+)(Radium(Column));
