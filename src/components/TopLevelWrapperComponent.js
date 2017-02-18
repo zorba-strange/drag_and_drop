@@ -1,5 +1,7 @@
 const React                 = require('react');
 const Radium                = require('radium');
+const HTML5Backend          = require('react-dnd-html5-backend');
+const { DragDropContext }   = require('react-dnd');
 
 const Column                = require('./Column');
 const MakeCellButton        = require('./buttons/MakeCellButton');
@@ -47,4 +49,4 @@ const TopLevelWrapperComponent = () => {
     );
 }
 
-module.exports = Radium(TopLevelWrapperComponent);
+module.exports = DragDropContext(HTML5Backend)(Radium(TopLevelWrapperComponent));

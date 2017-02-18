@@ -21,7 +21,8 @@ const page_wrapper_styles = {
     },
 };
 
-const MakeCellButton = () => {
+
+const MakeCellButton = ({}) => {
     return (
         <div
             onClick={() => {
