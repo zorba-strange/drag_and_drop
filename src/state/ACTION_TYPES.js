@@ -8,3 +8,17 @@ const MOVE_CELL          = 'MOVE_CELL';
 
 const REMOVE_CELL        = 'REMOVE_CELL';
 const REMOVE_COLUMN      = 'REMOVE_COLUMN';
+
+module.exports = {
+    DRAGGING,
+
+    MAKE_COLUMN,
+    MAKE_CELL,
+
+    MOVE_COLUMN,
+    MOVE_CELL,
+
+    REMOVE_CELL,
+    REMOVE_COLUMN,
+};
+

@@ -1,5 +1,9 @@
 const React                 = require('react');
 const Radium                = require('radium');
+const { connect }           = require('react-redux');
+const { bindActionCreators } = require('redux');
+const Immutable               = require('immutable');
+const { makeColumn }        = require('../../state/actions/make_actions');
 
 
 const page_wrapper_styles = {
@@ -22,11 +26,16 @@ const page_wrapper_styles = {
 
 };
 
-const MakeColumnButton = () => {
+const MakeColumnButton = ({
+    makeColumn,
+}) => {
     return (
         <div
-            onClick={() => {
+            onClick={(e) => {
+                e.preventDefault();
                 console.log('make new column');
+                const column = Immutable.List([]);
+                makeColumn(column);
             }}
             style={page_wrapper_styles}>
             Column
@@ -34,5 +43,13 @@ const MakeColumnButton = () => {
     )
 };
 
+const mapStateToProps = (state) => {
+    return {};
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        makeColumn: bindActionCreators(makeColumn, dispatch),
+    }
+};
 
-module.exports = Radium(MakeColumnButton);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Radium(MakeColumnButton));

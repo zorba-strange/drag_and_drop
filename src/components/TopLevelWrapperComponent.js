@@ -1,7 +1,10 @@
 const React                 = require('react');
 const Radium                = require('radium');
+const Immutable             = require('immutable');
 const HTML5Backend          = require('react-dnd-html5-backend');
 const { DragDropContext }   = require('react-dnd');
+const { compose }           = require('redux');
+const { connect }           = require('react-redux');
 
 const Column                = require('./Column');
 const MakeColumnButton      = require('./buttons/MakeColumnButton');
@@ -31,20 +34,36 @@ const button_wrapper_styles = {
 }
     
     
-const TopLevelWrapperComponent = () => {
+const TopLevelWrapperComponent = ({
+    columns,
+}) => {
     return (
         <div>
             <div
                 style={column_wrapper_styles}>
-                <Column />
-                <Column />
+                {columns.map((column, column_index) => {
+                    return (
+                        <Column />
+                    );
+                })}
+
             </div>
             <div
-            style={button_wrapper_styles}>
+                style={button_wrapper_styles}>
                 <MakeColumnButton />
             </div>
         </div>
     );
 }
 
-module.exports = DragDropContext(HTML5Backend)(Radium(TopLevelWrapperComponent));
+const mapStateToProps = (state) => {
+    return {
+        columns: state.getIn(['columns'], Immutable.List([])),
+    };
+};
+
+
+module.exports = compose(
+    DragDropContext(HTML5Backend),
+    connect(mapStateToProps),
+)(Radium(TopLevelWrapperComponent));

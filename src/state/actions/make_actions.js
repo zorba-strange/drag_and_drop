@@ -1,8 +1,9 @@
 const {
     MAKE_CELL,
-    MAKE_COLUNM,
+    MAKE_COLUMN,
 }                             = require('../ACTION_TYPES');
 
+console.log(MAKE_CELL);
 
 const makeCell = (column_index, cell) => {
     return {
@@ -13,8 +14,15 @@ const makeCell = (column_index, cell) => {
 };
 
 const makeColumn = (column) => {
+    console.log(column, MAKE_COLUMN);
     return {
         type: MAKE_COLUMN,
         column,
     };
+};
+
+
+module.exports = {
+    makeCell,
+    makeColumn,
 };

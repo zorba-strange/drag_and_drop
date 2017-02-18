@@ -6,7 +6,9 @@ const {
 }                             = require('../ACTION_TYPES');
 
 
-const InitialState = Immutable.fromJS({});
+const InitialState = Immutable.fromJS({
+    columns: []
+});
 
 const make_reducer = createReducer(InitialState, {
 
@@ -14,3 +16,10 @@ const make_reducer = createReducer(InitialState, {
         return state.updateIn(['columns', action.column_index], state => state.push(action.cell));
     },
 
+    [MAKE_COLUMN]: (state, action) => {
+        return state.updateIn(['columns'], state => state.push(action.column));
+    },
+});
+
+        
+module.exports = make_reducer;

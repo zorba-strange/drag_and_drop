@@ -1,8 +1,19 @@
 const React                       = require('react');
-const ReactDOM                    = require('react-dom');
+const { render }                  = require('react-dom');
+const { Provider }                = require('react-redux');
+const { createStore }             = require('redux');
+
+const make_reducer                = require('./state/reducers/make_reducer');
+
 const TopLevelWrapperComponent    = require('./components/TopLevelWrapperComponent');
 
-ReactDOM.render(
-  <TopLevelWrapperComponent />,
-  document.getElementById('root')
+const store = createStore(make_reducer);
+
+
+render(
+    <Provider
+        store={store}>
+        <TopLevelWrapperComponent />
+    </Provider>,
+    document.getElementById('root')
 );
