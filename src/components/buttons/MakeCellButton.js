@@ -24,6 +24,9 @@ const page_wrapper_styles = {
 const MakeCellButton = () => {
     return (
         <div
+            onClick={() => {
+                console.log('make new cell');
+            }}
             style={page_wrapper_styles}>
             jlo
         </div>
