@@ -1,5 +1,6 @@
 const React                 = require('react');
 const Radium                = require('radium');
+const { DragSource }        = require('react-dnd');
 
 const Cell                  = require('./Cell');
 
@@ -26,9 +27,26 @@ const page_wrapper_styles = {
     minHeight: '20em',
 };
 
+const Column_Type = 'Column_Type';
 
-const Column = () => {
-    return (
+const columnDragSource = {
+    beginDrag: (props) => {
+        console.log('a column is being dragged');
+        return {placeholder: 'json object'};
+    },
+};
+
+const collect = (connect, monitor) => {
+    return {
+        connectDragSource: connect.dragSource(),
+        isDragging: monitor.isDragging(),
+    };
+};
+
+const Column = ({
+    connectDragSource,
+}) => {
+    return connectDragSource(
         <div
             style={page_wrapper_styles}>
             <Cell />
@@ -39,4 +57,4 @@ const Column = () => {
 };
 
 
-module.exports = Radium(Column);
+module.exports = DragSource(Column_Type, columnDragSource, collect)(Radium(Column));
