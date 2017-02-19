@@ -56,6 +56,7 @@ const Column = ({
     return connectDragSource(
         <div
             style={page_wrapper_styles}>
+            I am column {column_index}
             <MakeCellButton 
                 column_index={column_index}/>
             {cells.map(cell => {
